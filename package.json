@@ -1,0 +1,27 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "build:scss": "node-sass -w assets/scss/ -o public/assets/css/ --output-style compressed",
+    "build:webpack": "webpack -p --watch",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "prestart": "webpack -p",
+    "start": "node dist/app.js"
+  },
+  "author": "Mateus Ferreira Silva",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "express": "^4.14.0",
+    "node-sass": "^4.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0"
+  }
+}
