@@ -17,6 +17,8 @@ Run server with nodemon:
 
 ### Run
 
+`npm install`
+
 `npm run start`
 
 Go to [http://localhost:8000](http://localhost:8000)
