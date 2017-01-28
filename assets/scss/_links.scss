@@ -1,0 +1,20 @@
+.link {
+  opacity: 1;
+  transition: opacity ease-in-out 0.1s;
+
+  &:hover,
+  &:focus,
+  &:active{
+    opacity: 0.85;
+  }
+}
+
+.link--blue {
+  color: $light-blue;
+
+  &:hover,
+  &:focus,
+  &:active{
+    color: $light-blue;
+  }
+}

@@ -1,0 +1,29 @@
+.radio-button {
+  display: flex;
+  padding: spacing(small) 0;
+}
+
+.radio-button__label {
+  cursor: pointer;
+}
+
+input[type="radio"].radio-button__input {
+  display: none;
+
+  + .radio-button__label:before {
+    border: 1px solid $black;
+    border-radius: 50%;
+    content: "\00a0";
+    display: inline-block;
+    height: 16px;
+    margin-right: spacing();
+    vertical-align: top;
+    width: 16px;
+  }
+
+  &:checked + .radio-button__label:before {
+    background: $light-blue;
+    color: $white;
+    text-align: center;
+  }
+}

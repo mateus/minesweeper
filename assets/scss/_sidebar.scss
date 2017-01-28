@@ -1,0 +1,28 @@
+.nav {
+  flex: 1 1 auto;
+  position: relative;
+
+  > * {
+    border-bottom: 1px solid #ddd;
+    padding: spacing(large);
+
+    &:first-child {
+      margin-top: 0;
+      border-bottom: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.logo {
+  background-color: $light-blue;
+  color: $white;
+  letter-spacing: 1px;
+
+  .logo__text {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,21 @@
+.page {
+  display: flex;
+  height: 100vh;
+  background-color: $light-gray;
+  overflow: scroll;
+}
+
+.page__menu-side {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  border-right: 1px solid #ddd;
+  background-color: $white;
+}
+
+.page__map-side {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: center;
+  align-items: center;
+}

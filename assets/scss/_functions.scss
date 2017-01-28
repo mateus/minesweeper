@@ -1,0 +1,11 @@
+@function spacing($size: base) {
+  @if $size == small {
+    @return $base-unit;
+  } @else if $size == base {
+    @return $base-unit * 2;
+  } @else if $size == large {
+    @return $base-unit * 4;
+  } @else if $size == xlarge {
+    @return $base-unit * 6;
+  }
+}

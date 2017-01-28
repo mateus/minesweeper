@@ -1,0 +1,13 @@
+.button {
+  background-color: $light-blue;
+  border: 0;
+  padding: spacing();
+  width: 100%;
+  color: $white;
+  text-transform: uppercase;
+  transition: background-color ease-in-out 0.1s;
+
+  &:hover {
+    background-color: darken($light-blue, 5%);
+  }
+}

@@ -7,7 +7,46 @@
     <link rel="stylesheet" href="/assets/css/minesweeper.css">
   </head>
   <body>
-    <div class="minesweeper-wrapper"></div>
+    <div class="page">
+      <div class="page__menu-side page__menu-side--open">
+        <nav class="nav">
+          <div class="logo">
+            <h2 class="logo__text">MineSweeper</h2>
+          </div>
+
+          <div class="settings">
+            <h3>Level</h3>
+            <div class="radio-button">
+              <input id="map-size__small" class="radio-button__input" type="radio" name="map-size" value="small" />
+              <label for="map-size__small" class="radio-button__label">Small</label>
+            </div>
+            <div class="radio-button">
+              <input id="map-size__medium" class="radio-button__input" type="radio" name="map-size" value="medium" />
+              <label for="map-size__medium" class="radio-button__label">Medium</label>
+            </div>
+            <div class="radio-button">
+              <input id="map-size__large" class="radio-button__input" type="radio" name="map-size" value="large" />
+              <label for="map-size__large" class="radio-button__label">Large</label>
+            </div>
+          </div>
+
+          <div class="timer">
+            <h3>Time</h3>
+            <span class="timer-counter">000</span>
+          </div>
+
+          <div class="reset">
+            <button class="button" type="button" name="button">Reset</button>
+          </div>
+        </nav>
+        <footer class="footer">
+          <p>Made with ❤ by <a class="link link--blue" href="http://mateusferreira.io" target="_blank">Mateus Ferreira</a></p>
+        </footer>
+      </div>
+      <div class="page__map-side">
+        <div class="minesweeper-wrapper"></div>
+      </div>
+    </div>
 
     <script src="/assets/js/bundle.js"></script>
   </body>
