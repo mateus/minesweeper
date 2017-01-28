@@ -3,15 +3,15 @@ Minesweeper game made with NodeJS (ES6)
 
 ### Development
 
-Watch SCSS changes
+Watch SCSS changes:
 
 `npm run build:scss`
 
-Watch JS changes and rebuild JS bundle
+Watch JS changes and rebuild JS bundle:
 
 `npm run build:webpack`
 
-Run server with nodemon
+Run server with nodemon:
 
 `sudo npm run dev`
 
