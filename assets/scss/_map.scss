@@ -1,6 +1,30 @@
-.minesweeper-wrapper {
+$block-border: #aaa;
+$block-color: #ddd;
+$block-size: 30px;
+
+.minesweeper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
   height: 500px;
   width: 600px;
   background-color: $light-blue;
   margin: 20px;
+}
+
+.minesweeper__block {
+  box-sizing: border-box;
+  height: $block-size;
+  width: $block-size;
+  border: 1px solid $block-border;
+  background-color: $block-color;
+  box-shadow: inset 2px 2px 1px $white;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: inset 0px 0px 0px $white;
+  }
 }

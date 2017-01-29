@@ -1,5 +1,5 @@
 export default class MapBuilder {
   constructor() {
-    const wrapper = document.querySelector('.minesweeper-wrapper');
+    const wrapper = document.querySelector('.minesweeper');
   }
 }
