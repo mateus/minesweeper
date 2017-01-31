@@ -145,8 +145,10 @@ export default class MapBuilder {
     const isNumericBlock = parseInt(blockValue);
 
     if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN)) {
+      block.classList.add(this.BLOCK_CLASSES.STATES.OPEN);
       let spanWithValue = document.createElement('span');
 
+      // Setting the context
       if (isNumericBlock) {
         spanWithValue.textContent = blockValue;
       } else if (blockValue == '*'){
@@ -157,8 +159,7 @@ export default class MapBuilder {
         block.classList.add(this.BLOCK_CLASSES.STATES.BOMB);
       }
 
-      block.classList.add(this.BLOCK_CLASSES.STATES.OPEN);
-
+      // Setting the color
       if (isNumericBlock && parseInt(blockValue) == 2) {
         block.classList.add(this.BLOCK_CLASSES.STATES.GREEN);
       } else if (isNumericBlock && parseInt(blockValue) > 2) {
