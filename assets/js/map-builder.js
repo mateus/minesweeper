@@ -193,7 +193,11 @@ export default class MapBuilder {
       row = this.mineArr[i].substring(1, this.mineArr[i].indexOf('c'));
       column = this.mineArr[i].substring(this.mineArr[i].indexOf('c') + 1, this.mineArr[i].length);
       block = document.querySelector(`[data-position="r${row}c${column}"]`);
-      this.openSingleBlock(row, column, block, { firstBomb: false });
+      this.openSingleBomb(row, column, block, i);
     }
+  }
+
+  openSingleBomb(row, column, block, delay) {
+    setTimeout(this.openSingleBlock.bind(this, row, column, block, { firstBomb: false }), 50 * delay);
   }
 }
