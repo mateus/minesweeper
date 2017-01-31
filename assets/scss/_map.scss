@@ -55,6 +55,14 @@ $block-bomb-background: #e26565;
   color: $red;
 }
 
+.minesweeper__block--flag {
+  color: $black;
+
+  span {
+    transform: scale(0.7);
+  }
+}
+
 .minesweeper__block--first-bomb {
   background-color: $block-bomb-background;
 }

@@ -24,6 +24,7 @@ export default class MapBuilder {
         OPEN: 'minesweeper__block--open',
         RED: 'minesweeper__block--red',
         GREEN: 'minesweeper__block--green',
+        FLAG: 'minesweeper__block--flag',
         BOMB: 'minesweeper__block--bomb',
         FIRST_BOMB: 'minesweeper__block--first-bomb',
       }
@@ -32,6 +33,7 @@ export default class MapBuilder {
     this.gameOver = false;
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.classList.add(`minesweeper--${level}`);
+    this.flagsArr = [];
     this.mineArr = this.generateMinesArr(levels[level].rows,
                                          levels[level].columns,
                                          levels[level].mines);
@@ -131,18 +133,48 @@ export default class MapBuilder {
         block.classList.add(this.BLOCK_CLASSES.BASE);
         block.dataset.position = `r${r}c${c}`;
         block.onclick = this.blockClick.bind(this, block);
+        block.oncontextmenu = this.blockRightClick.bind(this, block);
         this.wrapper.appendChild(block);
       }
     }
   }
 
   blockClick(block) {
-    const positionAttr = block.dataset.position;
-    const row = positionAttr.substring(1, positionAttr.indexOf('c'));
-    const column = positionAttr.substring(positionAttr.indexOf('c') + 1, positionAttr.length);
+    let {row, column} = this.getElementPosition(block);
     const blockValue = this.map[row][column];
 
     this.openSingleBlock(row, column, block);
+  }
+
+  blockRightClick(block, event) {
+    event.preventDefault();
+    let {row, column} = this.getElementPosition(block);
+
+    if (this.isGameOver()) { return; }
+
+    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN) &&
+        !block.classList.contains(this.BLOCK_CLASSES.STATES.FLAG)
+      ) {
+      let spanWithValue = document.createElement('span');
+      let flag = document.createElement('i');
+      flag.classList.add('fa')
+      flag.classList.add('fa-flag');
+      spanWithValue.appendChild(flag);
+      block.classList.add(this.BLOCK_CLASSES.STATES.FLAG);
+      block.appendChild(spanWithValue);
+      this.flagsArr.push(`r${row}c${column}`);
+    } else if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN)) {
+      block.classList.remove(this.BLOCK_CLASSES.STATES.FLAG);
+      block.querySelector('span').remove();
+      this.flagsArr.splice(this.flagsArr.indexOf(`r${row}c${column}`), 1);
+    }
+  }
+
+  getElementPosition(block) {
+    const positionAttr = block.dataset.position;
+    const r = positionAttr.substring(1, positionAttr.indexOf('c'));
+    const c = positionAttr.substring(positionAttr.indexOf('c') + 1, positionAttr.length);
+    return {row: r, column: c};
   }
 
   isGameOver() {
@@ -153,7 +185,10 @@ export default class MapBuilder {
     const blockValue = this.map[row][column];
     const isNumericBlock = parseInt(blockValue);
 
-    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN) && (!this.isGameOver() || !opts.firstBomb)) {
+    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN) &&
+        !block.classList.contains(this.BLOCK_CLASSES.STATES.FLAG) &&
+        (!this.isGameOver() || !opts.firstBomb)
+      ) {
       block.classList.add(this.BLOCK_CLASSES.STATES.OPEN);
       let spanWithValue = document.createElement('span');
 
