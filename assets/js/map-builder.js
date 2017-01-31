@@ -129,7 +129,8 @@ export default class MapBuilder {
 
   printMap(level) {
     console.log(`Level: ${level}`);
-    console.log(this.map.join("\n"));
+    console.log(`Mines: ${this.minesArr.length}`);
+    console.log(`Map: \n${this.map.join("\n")}`);
   }
 
   getRandom(min, max) {
