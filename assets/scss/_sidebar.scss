@@ -26,3 +26,16 @@
     white-space: nowrap;
   }
 }
+
+.counter {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.game-stats {
+  display: flex;
+}
+
+.game-stats--half {
+  flex-basis: 50%;
+}

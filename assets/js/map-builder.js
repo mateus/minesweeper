@@ -31,10 +31,18 @@ export default class MapBuilder {
     }
 
     this.gameOver = false;
+
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.classList.add(`minesweeper--${level}`);
+
     this.flagsArr = [];
-    this.mineArr = this.generateMinesArr(levels[level].rows,
+
+    this.timerNode = document.querySelector('#timer');
+    this.minesHiddenNode = document.querySelector('#mines-hidden');
+    this.minesHidden = levels[level].mines;
+    this.minesHiddenNode.textContent = this.minesHidden;
+
+    this.minesArr = this.generateMinesArr(levels[level].rows,
                                          levels[level].columns,
                                          levels[level].mines);
     this.map = this.build(levels[level].rows,
@@ -51,7 +59,7 @@ export default class MapBuilder {
     for (let r = 0; r < rows; r++) {
       map[r] = [];
       for (let c = 0; c < columns; c++) {
-        map[r][c] = this.mineArr.indexOf(`r${r}c${c}`) !== -1 ? '*' : '0';
+        map[r][c] = this.minesArr.indexOf(`r${r}c${c}`) !== -1 ? '*' : '0';
       }
     }
 
@@ -148,25 +156,29 @@ export default class MapBuilder {
 
   blockRightClick(block, event) {
     event.preventDefault();
+
     let {row, column} = this.getElementPosition(block);
 
     if (this.isGameOver()) { return; }
 
     if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN) &&
-        !block.classList.contains(this.BLOCK_CLASSES.STATES.FLAG)
-      ) {
-      let spanWithValue = document.createElement('span');
-      let flag = document.createElement('i');
-      flag.classList.add('fa')
-      flag.classList.add('fa-flag');
-      spanWithValue.appendChild(flag);
-      block.classList.add(this.BLOCK_CLASSES.STATES.FLAG);
-      block.appendChild(spanWithValue);
-      this.flagsArr.push(`r${row}c${column}`);
+        !block.classList.contains(this.BLOCK_CLASSES.STATES.FLAG)) {
+      if (this.minesHidden > 0) {
+        let spanWithValue = document.createElement('span');
+        let flag = document.createElement('i');
+        flag.classList.add('fa')
+        flag.classList.add('fa-flag');
+        spanWithValue.appendChild(flag);
+        block.classList.add(this.BLOCK_CLASSES.STATES.FLAG);
+        block.appendChild(spanWithValue);
+        this.flagsArr.push(`r${row}c${column}`);
+        this.minesHiddenNode.textContent = --this.minesHidden;
+      }
     } else if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN)) {
       block.classList.remove(this.BLOCK_CLASSES.STATES.FLAG);
       block.querySelector('span').remove();
       this.flagsArr.splice(this.flagsArr.indexOf(`r${row}c${column}`), 1);
+      this.minesHiddenNode.textContent = ++this.minesHidden;
     }
   }
 
@@ -224,9 +236,9 @@ export default class MapBuilder {
   reviewAllBombs() {
     let block, row, column;
 
-    for (var i = 0; i < this.mineArr.length; i++) {
-      row = this.mineArr[i].substring(1, this.mineArr[i].indexOf('c'));
-      column = this.mineArr[i].substring(this.mineArr[i].indexOf('c') + 1, this.mineArr[i].length);
+    for (var i = 0; i < this.minesArr.length; i++) {
+      row = this.minesArr[i].substring(1, this.minesArr[i].indexOf('c'));
+      column = this.minesArr[i].substring(this.minesArr[i].indexOf('c') + 1, this.minesArr[i].length);
       block = document.querySelector(`[data-position="r${row}c${column}"]`);
       this.openSingleBomb(row, column, block, i);
     }

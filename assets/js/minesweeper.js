@@ -1,8 +1,10 @@
 import MapBuilder from './map-builder';
 import Sidebar from './sidebar';
 
-new MapBuilder('small');
+window.minesweeperMap = new MapBuilder('small');
 // new MapBuilder();
 // new MapBuilder('large');
+
+console.log(window.minesweeperMap);
 
 new Sidebar();
