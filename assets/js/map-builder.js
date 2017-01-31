@@ -18,6 +18,16 @@ export default class MapBuilder {
       },
     }
 
+    this.BLOCK_CLASSES = {
+      BASE: 'minesweeper__block',
+      STATES: {
+        OPEN: 'minesweeper__block--open',
+        RED: 'minesweeper__block--red',
+        GREEN: 'minesweeper__block--green',
+        BOMB: 'minesweeper__block--bomb',
+      }
+    }
+
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.classList.add(`minesweeper--${level}`);
     this.map = this.build(levels[level].rows,
@@ -113,7 +123,7 @@ export default class MapBuilder {
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < columns; c++) {
         block = document.createElement('div');
-        block.classList.add('minesweeper__block');
+        block.classList.add(this.BLOCK_CLASSES.BASE);
         block.dataset.position = `r${r}c${c}`;
         block.onclick = this.blockClick.bind(this, block);
         this.wrapper.appendChild(block);
@@ -134,7 +144,7 @@ export default class MapBuilder {
     const blockValue = this.map[row][column];
     const isNumericBlock = parseInt(blockValue);
 
-    if (!block.classList.contains('minesweeper__block--open')) {
+    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN)) {
       let spanWithValue = document.createElement('span');
 
       if (isNumericBlock) {
@@ -144,15 +154,15 @@ export default class MapBuilder {
         bomb.classList.add('fa')
         bomb.classList.add('fa-bomb');
         spanWithValue.appendChild(bomb);
-        block.classList.add('minesweeper__block--bomb');
+        block.classList.add(this.BLOCK_CLASSES.STATES.BOMB);
       }
 
-      block.classList.add('minesweeper__block--open');
+      block.classList.add(this.BLOCK_CLASSES.STATES.OPEN);
 
       if (isNumericBlock && parseInt(blockValue) == 2) {
-        block.classList.add('minesweeper__block--green');
+        block.classList.add(this.BLOCK_CLASSES.STATES.GREEN);
       } else if (isNumericBlock && parseInt(blockValue) > 2) {
-        block.classList.add('minesweeper__block--red');
+        block.classList.add(this.BLOCK_CLASSES.STATES.RED);
       }
 
       block.appendChild(spanWithValue);

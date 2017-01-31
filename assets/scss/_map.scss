@@ -2,6 +2,7 @@ $block-border: #aaa;
 $block-color: #ddd;
 $block-color-open: #d0d0d0;
 $block-size: 30px;
+$block-bomb-background: #e26565;
 
 .minesweeper {
   display: flex;
@@ -55,6 +56,7 @@ $block-size: 30px;
 
 .minesweeper__block--bomb {
   color: $black;
+  background-color: $block-bomb-background;
 
   span {
     transform: scale(0.7);
