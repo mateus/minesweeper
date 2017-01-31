@@ -10,4 +10,11 @@
   &:hover {
     background-color: darken($light-blue, 5%);
   }
+  &:active {
+    background-color: darken($light-blue, 10%);
+  }
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }

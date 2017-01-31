@@ -1,4 +1,4 @@
-import Timer from './timer';
+import { timer } from './timer';
 
 export default class MapBuilder {
   constructor(level = 'medium') {
@@ -35,14 +35,15 @@ export default class MapBuilder {
     this.gameOver = false;
     this.firstClick = true;
 
-    this.timer = new Timer();
+    timer.stopTimer();
 
     this.wrapper = document.querySelector('.minesweeper');
+    this.wrapper.innerHTML = '';
+    this.wrapper.className = 'minesweeper';
     this.wrapper.classList.add(`minesweeper--${level}`);
 
     this.flagsArr = [];
 
-    this.timerNode = document.querySelector('#timer');
     this.minesHiddenNode = document.querySelector('#mines-hidden');
     this.minesHidden = levels[level].mines;
     this.minesHiddenNode.textContent = this.minesHidden;
@@ -155,7 +156,7 @@ export default class MapBuilder {
   blockClick(block) {
     if (this.firstClick) {
       this.firstClick = false;
-      this.timer.startTimer();
+      timer.startTimer();
     }
 
     let {row, column} = this.getElementPosition(block);
@@ -169,7 +170,7 @@ export default class MapBuilder {
 
     if (this.firstClick) {
       this.firstClick = false;
-      this.timer.startTimer();
+      timer.startTimer();
     }
 
     let {row, column} = this.getElementPosition(block);
@@ -264,7 +265,7 @@ export default class MapBuilder {
 
   setGameOver() {
     console.log('== Game Over ==');
-    this.timer.stopTimer();
+    timer.stopTimer();
     return this.gameOver = true;
   }
 }

@@ -1,8 +1,23 @@
 import MapBuilder from './map-builder';
-import Sidebar from './sidebar';
+import { timer } from './timer';
 
-window.map = new MapBuilder('small');
-// new MapBuilder();
-// new MapBuilder('large');
-// window.sidebar = new Sidebar();
-console.log(window.map);
+(() => {
+  let levelsNode = document.querySelectorAll('[name="map-size"]');
+  let resetButton = document.querySelector('#reset');
+  resetButton.onclick = updateLevel;
+
+  updateLevel();
+  levelsNode.forEach((level) => {
+    level.addEventListener('change', () => {
+      updateLevel();
+    });
+  });
+
+  function updateLevel() {
+    timer.clean();
+    let checkedLevel = document.querySelector('[name="map-size"]:checked').value;
+    window.map = new MapBuilder(checkedLevel);
+  }
+
+  console.log(window.map);
+})();

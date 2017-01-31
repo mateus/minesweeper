@@ -1,9 +1,13 @@
-export default class Timer {
+class Timer {
   constructor() {
     this.timerNode = document.querySelector('#timer');
 
     this.timer;
     this.timeRunning = false;
+  }
+
+  clean() {
+    this.timerNode.textContent = '000';
   }
 
   startTimer() {
@@ -30,3 +34,5 @@ export default class Timer {
     this.timerNode.textContent = pad.substring(0, pad.length - seconds.length) + seconds;
   }
 }
+
+export let timer = new Timer();
