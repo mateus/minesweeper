@@ -6,10 +6,21 @@ $block-size: 30px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  height: 500px;
-  width: 600px;
-  background-color: $light-blue;
   margin: 20px;
+  border: 3px solid $block-color;
+  border-radius: 3px;
+}
+
+.minesweeper--small {
+  width: $block-size * 12;
+}
+
+.minesweeper--medium {
+  width: $block-size * 20;
+}
+
+.minesweeper--large {
+  width: $block-size * 28;
 }
 
 .minesweeper__block {

@@ -1,7 +1,5 @@
 export default class MapBuilder {
   constructor(level = 'medium') {
-    // const wrapper = document.querySelector('.minesweeper');
-
     const levels = {
       'small': {
         rows: 15,
@@ -14,16 +12,19 @@ export default class MapBuilder {
         mines: 40,
       },
       'large': {
-        rows: 24,
+        rows: 18,
         columns: 28,
         mines: 80,
       },
     }
 
+    this.wrapper = document.querySelector('.minesweeper');
+    this.wrapper.classList.add(`minesweeper--${level}`);
     this.map = this.build(levels[level].rows,
                           levels[level].columns,
                           levels[level].mines);
     this.printMap(level);
+    this.renderMap();
   }
 
   build(rows, columns, totalMines) {
@@ -102,5 +103,28 @@ export default class MapBuilder {
 
   getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  renderMap() {
+    const rows = this.map.length;
+    const columns = this.map[0].length;
+    let block;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < columns; c++) {
+        block = document.createElement('div');
+        block.classList.add('minesweeper__block');
+        block.dataset.position = `r${r}c${c}`;
+        block.onclick = this.blockClick.bind(this, block);
+        this.wrapper.appendChild(block);
+      }
+    }
+  }
+
+  blockClick(block) {
+    let positionAttr = block.dataset.position;
+    const row = positionAttr.substring(1, positionAttr.indexOf('c'));
+    const column = positionAttr.substring(positionAttr.indexOf('c') + 1, positionAttr.length);
+    console.log('Block: ' + this.map[row][column]);
   }
 }
