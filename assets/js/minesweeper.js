@@ -1,5 +1,6 @@
 import MapBuilder from './map-builder';
 import { timer } from './timer';
+import './hotkeys';
 
 (() => {
   let levelsNode = document.querySelectorAll('[name="map-size"]');
@@ -15,7 +16,7 @@ import { timer } from './timer';
 
   function updateLevel() {
     timer.clean();
-    console.log('== New Game ==');
+    console.log('========== New Game ==========');
     let checkedLevel = document.querySelector('[name="map-size"]:checked').value;
     window.map = new MapBuilder(checkedLevel);
   }

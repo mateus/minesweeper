@@ -39,3 +39,21 @@
 .game-stats--half {
   flex-basis: 50%;
 }
+
+.legend {
+  list-style: none;
+  margin: 0;
+	padding: 0;
+
+  .legend__item {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-bottom: spacing(small);
+    color: #9c9c9c;
+
+    span {
+      color: #6b6b6b;
+    }
+  }
+}

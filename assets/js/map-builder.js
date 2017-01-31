@@ -271,7 +271,7 @@ export default class MapBuilder {
   }
 
   printTrollFace() {
-    const trollface = `== Game Over ==
+    const trollface = `========== Game Over ==========
 ░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░░
 ░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░
 ░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░
