@@ -29,6 +29,7 @@ export default class MapBuilder {
       }
     }
 
+    this.gameOver = false;
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.classList.add(`minesweeper--${level}`);
     this.mineArr = this.generateMinesArr(levels[level].rows,
@@ -144,11 +145,15 @@ export default class MapBuilder {
     this.openSingleBlock(row, column, block);
   }
 
+  isGameOver() {
+    return this.gameOver;
+  }
+
   openSingleBlock(row, column, block, opts = { firstBomb: true }) {
     const blockValue = this.map[row][column];
     const isNumericBlock = parseInt(blockValue);
 
-    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN)) {
+    if (!block.classList.contains(this.BLOCK_CLASSES.STATES.OPEN) && (!this.isGameOver() || !opts.firstBomb)) {
       block.classList.add(this.BLOCK_CLASSES.STATES.OPEN);
       let spanWithValue = document.createElement('span');
 
@@ -163,6 +168,8 @@ export default class MapBuilder {
 
         block.classList.add(this.BLOCK_CLASSES.STATES.BOMB);
         if (opts.firstBomb) {
+          this.gameOver = true;
+          console.log('== Game Over ==');
           block.classList.add(this.BLOCK_CLASSES.STATES.FIRST_BOMB);
           this.reviewAllBombs();
         }
