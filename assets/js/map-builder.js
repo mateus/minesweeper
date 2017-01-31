@@ -160,7 +160,7 @@ export default class MapBuilder {
       timer.startTimer();
     }
 
-    let {row, column} = this.getElementPosition(block);
+    const {row, column} = this.getElementPosition(block);
     const blockValue = this.map[row][column];
 
     this.openSingleBlock(row, column, block);
@@ -174,7 +174,7 @@ export default class MapBuilder {
       timer.startTimer();
     }
 
-    let {row, column} = this.getElementPosition(block);
+    const {row, column} = this.getElementPosition(block);
 
     if (this.isGameOver()) { return; }
 

@@ -16,14 +16,17 @@ $block-bomb-background: #e26565;
 
 .minesweeper--small {
   width: $block-size * 12;
+  height: $block-size * 15;
 }
 
 .minesweeper--medium {
   width: $block-size * 20;
+  height: $block-size * 16;
 }
 
 .minesweeper--large {
   width: $block-size * 28;
+  height: $block-size * 18;
 }
 
 .minesweeper__block {
