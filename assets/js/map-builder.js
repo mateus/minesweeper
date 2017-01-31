@@ -1,3 +1,5 @@
+import Timer from './timer';
+
 export default class MapBuilder {
   constructor(level = 'medium') {
     const levels = {
@@ -31,6 +33,9 @@ export default class MapBuilder {
     }
 
     this.gameOver = false;
+    this.firstClick = true;
+
+    this.timer = new Timer();
 
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.classList.add(`minesweeper--${level}`);
@@ -148,6 +153,11 @@ export default class MapBuilder {
   }
 
   blockClick(block) {
+    if (this.firstClick) {
+      this.firstClick = false;
+      this.timer.startTimer();
+    }
+
     let {row, column} = this.getElementPosition(block);
     const blockValue = this.map[row][column];
 
@@ -156,6 +166,11 @@ export default class MapBuilder {
 
   blockRightClick(block, event) {
     event.preventDefault();
+
+    if (this.firstClick) {
+      this.firstClick = false;
+      this.timer.startTimer();
+    }
 
     let {row, column} = this.getElementPosition(block);
 
@@ -189,10 +204,6 @@ export default class MapBuilder {
     return {row: r, column: c};
   }
 
-  isGameOver() {
-    return this.gameOver;
-  }
-
   openSingleBlock(row, column, block, opts = { firstBomb: true }) {
     const blockValue = this.map[row][column];
     const isNumericBlock = parseInt(blockValue);
@@ -215,8 +226,6 @@ export default class MapBuilder {
 
         block.classList.add(this.BLOCK_CLASSES.STATES.BOMB);
         if (opts.firstBomb) {
-          this.gameOver = true;
-          console.log('== Game Over ==');
           block.classList.add(this.BLOCK_CLASSES.STATES.FIRST_BOMB);
           this.reviewAllBombs();
         }
@@ -242,9 +251,20 @@ export default class MapBuilder {
       block = document.querySelector(`[data-position="r${row}c${column}"]`);
       this.openSingleBomb(row, column, block, i);
     }
+    this.setGameOver();
   }
 
   openSingleBomb(row, column, block, delay) {
     setTimeout(this.openSingleBlock.bind(this, row, column, block, { firstBomb: false }), 50 * delay);
+  }
+
+  isGameOver() {
+    return this.gameOver;
+  }
+
+  setGameOver() {
+    console.log('== Game Over ==');
+    this.timer.stopTimer();
+    return this.gameOver = true;
   }
 }
