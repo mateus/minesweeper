@@ -28,14 +28,51 @@ export default class MapBuilder {
 
   build(rows, columns, totalMines) {
     let minePos = this.generateMinesArr(rows, columns, totalMines);
-
     let map = [];
+
     for (let r = 0; r < rows; r++) {
       map[r] = [];
       for (let c = 0; c < columns; c++) {
         map[r][c] = minePos.indexOf(`r${r}c${c}`) != -1 ? '*' : '0';
       }
     }
+
+    map = this.setValuesForEachPosition(map);
+    return map;
+  }
+
+  setValuesForEachPosition(map) {
+    const rows = map.length;
+    const columns = map[0].length;
+    let total = 0;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < columns; c++) {
+        total = 0;
+
+        // Top left element
+        if (r > 0 && c > 0 && map[r-1][c-1] == '*') { total++ }
+        // Top element
+        if (r > 0 && map[r-1][c] == '*') { total++ }
+        // Top right element
+        if (r > 0 && c < columns && map[r-1][c+1] == '*') { total++ }
+        // Left element
+        if (c > 0 && map[r][c-1] == '*') { total++ }
+        // Right element
+        if (c < columns && map[r][c+1] == '*') { total++ }
+        // Bottom left element
+        if (c > 0 && r < rows - 1 && map[r+1][c-1] == '*') { total++ }
+        // Bottom element
+        if (r < rows - 1 && map[r+1][c] == '*') { total++ }
+        // Bottom right element
+        if (c < columns && r < rows - 1 && map[r+1][c+1] == '*') { total++ }
+
+        if (map[r][c] != '*') {
+          map[r][c] = total;
+        }
+      }
+    }
+
     return map;
   }
 
