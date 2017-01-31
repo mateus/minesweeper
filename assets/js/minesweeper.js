@@ -3,8 +3,8 @@ import { timer } from './timer';
 import './hotkeys';
 
 (() => {
-  let levelsNode = document.querySelectorAll('[name="map-size"]');
-  let resetButton = document.querySelector('#reset');
+  const levelsNode = document.querySelectorAll('[name="map-size"]');
+  const resetButton = document.querySelector('#reset');
   resetButton.onclick = updateLevel;
 
   updateLevel();
@@ -17,7 +17,7 @@ import './hotkeys';
   function updateLevel() {
     timer.clean();
     console.log('========== New Game ==========');
-    let checkedLevel = document.querySelector('[name="map-size"]:checked').value;
+    const checkedLevel = document.querySelector('[name="map-size"]:checked').value;
     window.map = new MapBuilder(checkedLevel);
   }
 })();

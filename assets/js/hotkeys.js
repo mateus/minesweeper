@@ -9,7 +9,7 @@ class Hotkeys {
       switch (e.code) {
         case 'KeyR':
         checkedLevel
-          let checkedLevel = document.querySelector('[name="map-size"]:checked').value;
+          const checkedLevel = document.querySelector('[name="map-size"]:checked').value;
           this.changeLevel(checkedLevel);
           break;
         case 'Digit1':
