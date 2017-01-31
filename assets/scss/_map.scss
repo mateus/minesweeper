@@ -1,5 +1,6 @@
 $block-border: #aaa;
 $block-color: #ddd;
+$block-color-open: #d0d0d0;
 $block-size: 30px;
 
 .minesweeper {
@@ -24,18 +25,48 @@ $block-size: 30px;
 }
 
 .minesweeper__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   height: $block-size;
   width: $block-size;
   border: 1px solid $block-border;
   background-color: $block-color;
   box-shadow: inset 2px 2px 1px $white;
+  cursor: pointer;
+  color: $blue;
+  font-size: 22px;
+  font-weight: 700;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.minesweeper__block--open {
+  background-color: $block-color-open;
+  box-shadow: inset 0px 0px 0px $white;
+}
 
-  &:active {
-    box-shadow: inset 0px 0px 0px $white;
+.minesweeper__block--green {
+  color: $green;
+}
+
+.minesweeper__block--red {
+  color: $red;
+}
+
+.minesweeper__block--bomb {
+  color: $black;
+
+  span {
+    transform: scale(0.7);
+    animation-name: bomb;
+    animation-duration: .4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.6,1,.67,1);
   }
+}
+
+@keyframes bomb {
+  from { transform: scale(0.7); }
+  to { transform: scale(0.85); }
 }

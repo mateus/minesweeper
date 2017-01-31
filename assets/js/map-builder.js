@@ -28,7 +28,7 @@ export default class MapBuilder {
   }
 
   build(rows, columns, totalMines) {
-    let minePos = this.generateMinesArr(rows, columns, totalMines);
+    const minePos = this.generateMinesArr(rows, columns, totalMines);
     let map = [];
 
     for (let r = 0; r < rows; r++) {
@@ -122,9 +122,40 @@ export default class MapBuilder {
   }
 
   blockClick(block) {
-    let positionAttr = block.dataset.position;
+    const positionAttr = block.dataset.position;
     const row = positionAttr.substring(1, positionAttr.indexOf('c'));
     const column = positionAttr.substring(positionAttr.indexOf('c') + 1, positionAttr.length);
-    console.log('Block: ' + this.map[row][column]);
+    const blockValue = this.map[row][column];
+
+    this.openSingleBlock(row, column, block);
+  }
+
+  openSingleBlock(row, column, block) {
+    const blockValue = this.map[row][column];
+    const isNumericBlock = parseInt(blockValue);
+
+    if (!block.classList.contains('minesweeper__block--open')) {
+      let spanWithValue = document.createElement('span');
+
+      if (isNumericBlock) {
+        spanWithValue.textContent = blockValue;
+      } else if (blockValue == '*'){
+        let bomb = document.createElement('i');
+        bomb.classList.add('fa')
+        bomb.classList.add('fa-bomb');
+        spanWithValue.appendChild(bomb);
+        block.classList.add('minesweeper__block--bomb');
+      }
+
+      block.classList.add('minesweeper__block--open');
+
+      if (isNumericBlock && parseInt(blockValue) == 2) {
+        block.classList.add('minesweeper__block--green');
+      } else if (isNumericBlock && parseInt(blockValue) > 2) {
+        block.classList.add('minesweeper__block--red');
+      }
+
+      block.appendChild(spanWithValue);
+    }
   }
 }
