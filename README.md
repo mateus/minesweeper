@@ -1,6 +1,8 @@
 # minesweeper
 Minesweeper game made with NodeJS (ES6)
 
+![]()
+
 ### Development
 
 Watch SCSS changes:
