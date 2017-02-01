@@ -16,13 +16,14 @@
   letter-spacing: 1px;
   text-align: center;
   overflow: hidden;
-
+  transform: scale(0);
 }
 
 .victory-modal--open {
   transition: all 0.3s ease-in;
   top: 0%;
   bottom: 0%;
+  transform: scale(1);
 }
 
 .victory-modal__sheep {
