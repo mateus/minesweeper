@@ -1,1 +1,1 @@
-web: node ./dist/src/app.js
+web: npm run start
