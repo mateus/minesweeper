@@ -231,6 +231,8 @@ export default class MapBuilder {
           block.classList.add(this.BLOCK_CLASSES.STATES.FIRST_BOMB);
           this.reviewAllBombs();
         }
+      } else {
+        this.openEmptyBlock(row, column);
       }
 
       // Setting the color
@@ -242,6 +244,7 @@ export default class MapBuilder {
 
       block.appendChild(spanWithValue);
     }
+    return blockValue;
   }
 
   reviewAllBombs() {
@@ -258,6 +261,60 @@ export default class MapBuilder {
 
   openSingleBomb(row, column, block, delay) {
     setTimeout(this.openSingleBlock.bind(this, row, column, block, { firstBomb: false }), 50 * delay);
+  }
+
+  openEmptyBlock(row, column) {
+    this.seachTopBlock(row, column);
+    this.seachLeftBlock(row, column);
+    this.seachRighBlock(row, column);
+    this.seachBottomBlock(row, column);
+  }
+
+  seachTopBlock(row, column) {
+    if (row == 0) { return; }
+    let block = document.querySelector(`[data-position="r${row}c${column}"]`);
+    let result = this.openSingleBlock(row, column, block);
+    --row;
+
+    if (result === 0) {
+      this.seachTopBlock(row, column);
+      this.seachRighBlock(row, column);
+      this.seachLeftBlock(row, column);
+      this.seachBottomBlock(row, column);
+    }
+  }
+
+  seachRighBlock(row, column) {
+    if (column === this.map[0].length) { return; }
+    let block = document.querySelector(`[data-position="r${row}c${column}"]`);
+    let result = this.openSingleBlock(row, column, block);
+    ++column
+
+    if (result === 0) {
+      this.seachRighBlock(row, column);
+    }
+  }
+
+  seachLeftBlock(row, column) {
+    if (column == 0) { return; }
+    --column
+    let block = document.querySelector(`[data-position="r${row}c${column}"]`);
+    let result = this.openSingleBlock(row, column, block);
+
+    if (result === 0) {
+      this.seachLeftBlock(row, column);
+    }
+  }
+
+  seachBottomBlock(row, column) {
+    if (row === this.map.length) { return; }
+    let block = document.querySelector(`[data-position="r${row}c${column}"]`);
+    let result = this.openSingleBlock(row, column, block);
+    ++row
+
+    if (result === 0) {
+      this.seachBottomBlock(row, column);
+    }
   }
 
   isGameOver() {
