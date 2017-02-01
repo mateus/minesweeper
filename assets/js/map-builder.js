@@ -11,7 +11,7 @@ export default class MapBuilder {
       'medium': {
         rows: 16,
         columns: 20,
-        mines: 40,
+        mines: 30,
       },
       'large': {
         rows: 18,
