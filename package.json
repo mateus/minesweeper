@@ -7,8 +7,8 @@
     "build:scss": "node-sass -w assets/scss/ -o public/assets/css/ --output-style compressed",
     "build:webpack": "webpack -p --watch",
     "dev": "nodemon --exec babel-node src/app.js",
-    "prestart": "webpack -p",
-    "start": "node dist/app.js"
+    "prestart": "webpack -p && babel src/app.js --out-dir dist",
+    "start": "node dist/src/app.js"
   },
   "author": "Mateus Ferreira Silva",
   "license": "ISC",
