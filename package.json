@@ -28,6 +28,6 @@
     "url": "git://github.com/mateus/minesweeper.git"
   },
   "engines": {
-    "node": "v0.12.0"
+    "node": "v7.4.0"
   }
 }
