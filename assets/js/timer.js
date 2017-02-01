@@ -3,6 +3,7 @@ class Timer {
     this.timerNode = document.querySelector('#timer');
 
     this.timer;
+    this.seconds;
     this.timeRunning = false;
   }
 
@@ -12,14 +13,14 @@ class Timer {
 
   startTimer() {
     this.timeRunning = true;
-    let seconds = 0;
+    this.seconds = 0;
     let secondsStr;
 
-    ++seconds
-    this.updateTimer(seconds);
+    ++this.seconds
+    this.updateTimer(this.seconds);
     this.timer = setInterval(() => {
-      ++seconds
-      this.updateTimer(seconds);
+      ++this.seconds
+      this.updateTimer(this.seconds);
     }, 1000);
   }
 
@@ -30,8 +31,8 @@ class Timer {
 
   updateTimer(seconds) {
     const pad = '000';
-    seconds = seconds + '';
-    this.timerNode.textContent = pad.substring(0, pad.length - seconds.length) + seconds;
+    this.seconds = this.seconds + '';
+    this.timerNode.textContent = pad.substring(0, pad.length - seconds.length) + this.seconds;
   }
 }
 

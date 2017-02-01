@@ -6,7 +6,7 @@ export default class MapBuilder {
       'small': {
         rows: 15,
         columns: 12,
-        mines: 15,
+        mines: 10,
       },
       'medium': {
         rows: 16,
@@ -36,6 +36,8 @@ export default class MapBuilder {
     this.firstClick = true;
 
     timer.stopTimer();
+    this.victoryModalNode = document.querySelector('.victory-modal');
+    this.victoryModalNode.classList.remove('victory-modal--open');
 
     this.wrapper = document.querySelector('.minesweeper');
     this.wrapper.innerHTML = '';
@@ -43,6 +45,8 @@ export default class MapBuilder {
     this.wrapper.classList.add(`minesweeper--${level}`);
 
     this.flagsArr = [];
+    this.totalBlocks = levels[level].rows * levels[level].columns;
+    this.totalOpenedBlocks = 0;
 
     this.minesHiddenNode = document.querySelector('#mines-hidden');
     this.minesHidden = levels[level].mines;
@@ -197,6 +201,9 @@ export default class MapBuilder {
       this.flagsArr.splice(this.flagsArr.indexOf(`r${row}c${column}`), 1);
       this.minesHiddenNode.textContent = ++this.minesHidden;
     }
+    if (this.shouldTestForVictory()) {
+      this.testVictory();
+    }
   }
 
   getElementPosition(block) {
@@ -243,8 +250,37 @@ export default class MapBuilder {
       }
 
       block.appendChild(spanWithValue);
+      this.totalOpenedBlocks++;
+      if (this.shouldTestForVictory()) {
+        this.testVictory();
+      }
     }
     return blockValue;
+  }
+
+  openSingleBomb(row, column, block, delay) {
+    setTimeout(this.openSingleBlock.bind(this, row, column, block, { firstBomb: false }), 50 * delay);
+  }
+
+  openEmptyBlock(row, column) {
+    this.seachTopBlock(row, column);
+    this.seachLeftBlock(row, column);
+    this.seachRighBlock(row, column);
+    this.seachBottomBlock(row, column);
+  }
+
+  shouldTestForVictory() {
+    return (this.totalBlocks - this.totalOpenedBlocks === this.minesArr.length);
+  }
+
+  testVictory() {
+    if ((this.totalBlocks - this.totalOpenedBlocks === this.minesArr.length ||
+          (this.minesArr.sort().toString() === this.flagsArr.sort().toString() && this.minesHidden === 0)) &&
+        !this.isGameOver()) {
+      timer.stopTimer();
+      this.victoryModalNode.classList.add('victory-modal--open');
+      console.log(`You Won! 🐑💨 Your time is ${timer.seconds} seconds!`);
+    }
   }
 
   reviewAllBombs() {
@@ -257,17 +293,6 @@ export default class MapBuilder {
       this.openSingleBomb(row, column, block, i);
     }
     this.setGameOver();
-  }
-
-  openSingleBomb(row, column, block, delay) {
-    setTimeout(this.openSingleBlock.bind(this, row, column, block, { firstBomb: false }), 50 * delay);
-  }
-
-  openEmptyBlock(row, column) {
-    this.seachTopBlock(row, column);
-    this.seachLeftBlock(row, column);
-    this.seachRighBlock(row, column);
-    this.seachBottomBlock(row, column);
   }
 
   seachTopBlock(row, column) {
