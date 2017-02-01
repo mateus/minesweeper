@@ -11,7 +11,7 @@
     "start": "node ./dist/src/app.js"
   },
   "author": "Mateus Ferreira Silva",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -27,5 +27,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/mateus/minesweeper.git"
+  },
+  "engines": {
+    "node": "v0.12.0"
   }
 }
