@@ -24,7 +24,7 @@ var Player = mongoose.model('Player', playerSchema);
 
 function savePlayer(playerObj) {
   var status;
-  mongoose.connect(process.env.MONGOLAB_URI);
+  mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOLAB_SILVER_URI);
   var db = mongoose.connection;
 
   db.on('error', function(e) {
@@ -51,7 +51,7 @@ app.get('/', function(request, res) {
 });
 
 app.get('/api/get/players', function(request, res) {
-  mongoose.connect(process.env.MONGOLAB_URI);
+  mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOLAB_SILVER_URI);
   var db = mongoose.connection;
   var data;
 
@@ -68,7 +68,7 @@ app.get('/api/get/players', function(request, res) {
 });
 
 app.get('/api/get/small', function(request, res) {
-  mongoose.connect(process.env.MONGOLAB_URI);
+  mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOLAB_SILVER_URI);
   var db = mongoose.connection;
   var data;
 
@@ -85,7 +85,7 @@ app.get('/api/get/small', function(request, res) {
 });
 
 app.get('/api/get/medium', function(request, res) {
-  mongoose.connect(process.env.MONGOLAB_URI);
+  mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOLAB_SILVER_URI);
   var db = mongoose.connection;
   var data;
 
@@ -102,7 +102,7 @@ app.get('/api/get/medium', function(request, res) {
 });
 
 app.get('/api/get/large', function(request, res) {
-  mongoose.connect(process.env.MONGOLAB_URI);
+  mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOLAB_SILVER_URI);
   var db = mongoose.connection;
   var data;
 
