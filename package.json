@@ -18,6 +18,7 @@
     "express": "^4.14.0",
     "mongoose": "^4.8.1",
     "node-sass": "^4.4.0",
+    "validator": "^6.2.1",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {

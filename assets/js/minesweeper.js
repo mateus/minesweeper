@@ -3,6 +3,9 @@ import { timer } from './timer';
 import './hotkeys';
 import 'whatwg-fetch';
 import moment from 'moment';
+import isAlpha from 'validator/lib/isAlpha';
+import isLength from 'validator/lib/isLength';
+
 
 (() => {
   const levelsNode = document.querySelectorAll('[name="map-size"]');
@@ -36,7 +39,7 @@ import moment from 'moment';
       time: timer.seconds
     });
 
-    if (playerName.length > 0) {
+    if (isLength(playerName, {min: 1, max: 25}) && isAlpha(playerName)) {
       fetch('/api/save/player', {
         method: 'POST',
         headers: {
@@ -55,6 +58,8 @@ import moment from 'moment';
           window.location.reload(false);
         }, 1000);
       })
+    } else {
+      alert("Let's use only (a-zA-Z), please. I don't my database to be all messed up because of you!");
     }
   }
 
