@@ -74,6 +74,8 @@
 
     li {
       padding-bottom: spacing();
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     span {
