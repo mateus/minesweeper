@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 import moment from 'moment';
 import isAlpha from 'validator/lib/isAlpha';
 import isLength from 'validator/lib/isLength';
+import isAlphanumeric from 'validator/lib/isAlphanumeric';
 
 
 (() => {
@@ -30,7 +31,13 @@ import isLength from 'validator/lib/isLength';
   }
 
   function persistPlayerInfo() {
-    const playerName = document.querySelector('#form-name').value.trim();
+    let isValidName = true;
+    let playerName = document.querySelector('#form-name').value.trim();
+    playerName.split(' ').forEach((word) => {
+      if (!isAlphanumeric(word)) {
+        isValidName = false;
+      };
+    });
 
     const data = JSON.stringify({
       name: playerName,
@@ -38,7 +45,7 @@ import isLength from 'validator/lib/isLength';
       time: timer.seconds
     });
 
-    if (isLength(playerName, {min: 1, max: 25}) && isAlpha(playerName)) {
+    if (isValidName && isLength(playerName, {min: 1, max: 25})) {
       fetch('/api/save/player', {
         method: 'POST',
         headers: {
