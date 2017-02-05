@@ -5,3 +5,32 @@
   font-size: 12px;
   color: $light-blue;
 }
+
+.footer__links {
+  font-size: 24px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: spacing();
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+
+
+    li > a {
+      color: $light-blue;
+      cursor: pointer;
+      padding-right: spacing(large);
+      opacity: 0.7;
+      transition: opacity 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
