@@ -3,7 +3,7 @@ Minesweeper game made with NodeJS (ES6)
 
 ![](https://github.com/mateus/minesweeper/blob/master/gif/minesweeper.gif?raw=true)
 
-![With MongoDB Heroku Add-on](https://github.com/mateus/minesweeper/tree/with-mongodb)
+[Branch with MongoDB Heroku Add-on](https://github.com/mateus/minesweeper/tree/with-mongodb)
 
 ### Development
 
