@@ -20,20 +20,21 @@
     display: flex;
     justify-content: center;
 
-
-    li > a {
-      color: $light-blue;
-      cursor: pointer;
+    li {
       padding-right: spacing(large);
-      opacity: 0.7;
-      transition: opacity 0.2s ease-in-out;
-
-      &:hover {
-        opacity: 1;
-      }
 
       &:last-child {
         padding-right: 0;
+      }
+
+      a {
+        color: $light-blue;
+        cursor: pointer;
+        transition: opacity 0.2s ease-in-out;
+
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
