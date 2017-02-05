@@ -5,6 +5,10 @@ Minesweeper game made with NodeJS (ES6)
 
 ### Development
 
+Add Environment Variable MONGOLAB_URI with the DataBase URI:
+
+`export MONGOLAB_URI="{URI}"`
+
 Watch SCSS changes:
 
 `npm run build:scss`
@@ -18,6 +22,8 @@ Run server with nodemon:
 `sudo npm run dev`
 
 ### Run
+
+`export MONGOLAB_URI="{URI}"`
 
 `npm install`
 

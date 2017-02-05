@@ -14,8 +14,11 @@
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
-    "node-sass": "^4.4.0"
+    "mongoose": "^4.8.1",
+    "node-sass": "^4.4.0",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

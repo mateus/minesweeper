@@ -1,4 +1,7 @@
 .page {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   height: 100vh;
   background-color: $light-gray;
@@ -6,16 +9,83 @@
 }
 
 .page__menu-side {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   border-right: 1px solid #ddd;
   background-color: $white;
 }
 
 .page__map-side {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex: 1 1 100%;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.page__ranking-side {
+  max-width: 400px;
+  -webkit-flex-basis: 250px;
+      -ms-flex-preferred-size: 250px;
+          flex-basis: 250px;
+  text-align: right;
+  border-left: 1px solid #ddd;
+  background-color: $white;
+  padding: spacing(large);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  opacity: 0;
+  -webkit-transition: all 0.5s cubic-bezier(.71,.02,.37,1.03);
+  transition: all 0.5s cubic-bezier(.71,.02,.37,1.03);
+
+  strong {
+    color: $light-blue;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    font-size: 13px;
+
+    li {
+      padding-bottom: spacing();
+    }
+
+    span {
+      display: block;
+      opacity: 0.7;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.page__ranking-side--loaded {
+  opacity: 1;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
 }

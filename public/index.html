@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="page">
-      <div class="page__menu-side page__menu-side--open">
+      <div class="page__menu-side">
         <nav class="nav">
           <div class="logo">
             <h2 class="logo__text">MineSweeper</h2>
@@ -46,6 +46,10 @@
           </div>
 
           <div>
+            <button id="save" class="button" type="button" name="button">Save</button>
+          </div>
+
+          <div>
             <ul class="legend">
               <li class="legend__item"><span>Left-click</span> to reveal it.</li>
               <li class="legend__item"><span>Right-click</span> to flag it.</li>
@@ -63,6 +67,14 @@
         <div class="victory-modal">
           <p>Congratulations! You are not stupid. <span class="victory-modal__sheep">🐑💨</span></p>
         </div>
+      </div>
+      <div class="page__ranking-side">
+        <h3>Small</h3>
+        <ul id="ranking-small"></ul>
+        <h3>Medium</h3>
+        <ul id="ranking-medium"></ul>
+        <h3>Large</h3>
+        <ul id="ranking-large"></ul>
       </div>
     </div>
 
