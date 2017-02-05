@@ -28,6 +28,7 @@
   font-size: 24px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   font-weight: 600;
+  opacity: 0;
   letter-spacing: 1px;
   text-align: center;
   overflow: hidden;
@@ -36,6 +37,7 @@
 }
 
 .victory-modal--open {
+  opacity: 1;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   top: 0%;
