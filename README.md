@@ -7,7 +7,7 @@ Minesweeper game made with NodeJS (ES6)
 
 Add Environment Variable MONGOLAB_URI with the DataBase URI:
 
-`export MONGOLAB_URI="{URI}"`
+`export MONGOLAB_SILVER_URI="{URI}"`
 
 Watch SCSS changes:
 
