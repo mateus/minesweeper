@@ -1,5 +1,6 @@
 .link {
   opacity: 1;
+  -webkit-transition: opacity ease-in-out 0.1s;
   transition: opacity ease-in-out 0.1s;
 
   &:hover,

@@ -1,4 +1,7 @@
 .radio-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   padding: spacing(small) 0;
 }

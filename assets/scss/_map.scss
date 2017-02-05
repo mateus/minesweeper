@@ -5,13 +5,23 @@ $block-size: 30px;
 $block-bomb-background: #e26565;
 
 .minesweeper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
   margin: 20px;
   border: 3px solid $block-color;
   border-radius: 3px;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .minesweeper--small {
@@ -30,9 +40,18 @@ $block-bomb-background: #e26565;
 }
 
 .minesweeper__block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   box-sizing: border-box;
   height: $block-size;
   width: $block-size;
@@ -62,7 +81,8 @@ $block-bomb-background: #e26565;
   color: $black;
 
   span {
-    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
   }
 }
 
@@ -74,16 +94,27 @@ $block-bomb-background: #e26565;
   color: $black;
 
   span {
-    transform: scale(0.7);
-    animation-name: bomb;
-    animation-duration: .4s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: cubic-bezier(.6,1,.67,1);
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+    -webkit-animation-name: bomb;
+            animation-name: bomb;
+    -webkit-animation-duration: .4s;
+            animation-duration: .4s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-timing-function: cubic-bezier(.6,1,.67,1);
+            animation-timing-function: cubic-bezier(.6,1,.67,1);
   }
 }
 
+@-webkit-keyframes bomb {
+  from { -webkit-transform: scale(0.7); transform: scale(0.7); }
+  to { -webkit-transform: scale(0.85); transform: scale(0.85); }
+}
+
 @keyframes bomb {
-  from { transform: scale(0.7); }
-  to { transform: scale(0.85); }
+  from { -webkit-transform: scale(0.7); transform: scale(0.7); }
+  to { -webkit-transform: scale(0.85); transform: scale(0.85); }
 }
