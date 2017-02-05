@@ -47,12 +47,13 @@
 
 .page__ranking-side {
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   box-sizing: border-box;
   max-width: 400px;
-  -webkit-flex-basis: 250px;
-      -ms-flex-preferred-size: 250px;
-          flex-basis: 250px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   text-align: right;
   border-left: 1px solid #ddd;
   background-color: $white;
@@ -76,6 +77,7 @@
       padding-bottom: spacing();
       text-overflow: ellipsis;
       overflow: hidden;
+      white-space: nowrap;
     }
 
     span {
@@ -83,10 +85,10 @@
       opacity: 0.7;
     }
   }
-
-  @media screen and (max-width: 1000px) {
-    display: none;
-  }
+  /**/
+  /* @media screen and (max-width: 1000px) {*/
+  /*   display: none;*/
+  /* }*/
 }
 
 .page__ranking-side--loaded {
