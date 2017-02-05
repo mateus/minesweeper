@@ -30,8 +30,7 @@ import isLength from 'validator/lib/isLength';
   }
 
   function persistPlayerInfo() {
-    console.log(this.checkedLevel);
-    const playerName = document.querySelector('#form-name').value;
+    const playerName = document.querySelector('#form-name').value.trim();
 
     const data = JSON.stringify({
       name: playerName,
