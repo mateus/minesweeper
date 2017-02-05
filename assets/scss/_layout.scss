@@ -46,6 +46,9 @@
 }
 
 .page__ranking-side {
+  height: 100vh;
+  overflow: scroll;
+  box-sizing: border-box;
   max-width: 400px;
   -webkit-flex-basis: 250px;
       -ms-flex-preferred-size: 250px;

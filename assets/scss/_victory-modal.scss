@@ -1,9 +1,15 @@
 .victory-modal{
+  z-index: 1;
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   top: 100%;
   bottom: 100%;
   left: 210px;
@@ -58,4 +64,20 @@
   0% { right: -30%; }
   50% { right: 100%; }
   100% { right: 100%; }
+}
+
+.victory-modal__form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  color: $light-blue;
+
+  input {
+    padding: spacing(small) spacing();
+    outline: none;
+    border: 0;
+  }
 }

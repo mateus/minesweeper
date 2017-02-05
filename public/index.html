@@ -46,10 +46,6 @@
           </div>
 
           <div>
-            <button id="save" class="button" type="button" name="button">Save</button>
-          </div>
-
-          <div>
             <ul class="legend">
               <li class="legend__item"><span>Left-click</span> to reveal it.</li>
               <li class="legend__item"><span>Right-click</span> to flag it.</li>
@@ -64,8 +60,12 @@
       </div>
       <div class="page__map-side">
         <div class="minesweeper"></div>
-        <div class="victory-modal">
+        <div class="victory-modal victory-modal--open">
           <p>Congratulations! You are not stupid. <span class="victory-modal__sheep">🐑💨</span></p>
+          <div class="victory-modal__form">
+            <input id="form-name" type="text" name="name" value="" placeholder="Name" maxlength="20" />
+            <button id="save" class="button" type="button" name="button">Submit</button>
+          </div>
         </div>
       </div>
       <div class="page__ranking-side">

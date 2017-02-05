@@ -18,4 +18,8 @@
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    background-color: darken($light-blue, 20%);
+  }
 }

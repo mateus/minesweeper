@@ -38,8 +38,8 @@ function savePlayer(playerObj) {
     newPlayer.save(function (err, fluffy) {
       if (err) return console.error(err);
       status = 503;
-      db.close();
     });
+    db.close();
   });
 
   return status;
@@ -76,7 +76,7 @@ app.get('/api/get/small', function(request, res) {
     db.close();
   });
   db.once('open', function() {
-    Player.find({'level': 'Small'}).sort({ time: 1 }).exec(function (err, players) {
+    Player.find({'level': 'small'}).sort({ time: 1 }).exec(function (err, players) {
       if (err) return console.error(err);
       res.send(JSON.stringify(players));
       db.close();
@@ -93,7 +93,7 @@ app.get('/api/get/medium', function(request, res) {
     db.close();
   });
   db.once('open', function() {
-    Player.find({'level': 'Medium'}).sort({ time: 1 }).exec(function (err, players) {
+    Player.find({'level': 'medium'}).sort({ time: 1 }).exec(function (err, players) {
       if (err) return console.error(err);
       res.send(JSON.stringify(players));
       db.close();
